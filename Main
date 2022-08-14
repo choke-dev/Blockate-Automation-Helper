@@ -1,0 +1,221 @@
+--[[
+    
+    • ▌ ▄ ·.  ▄▄▄· ·▄▄▄▄  ▄▄▄ .    ▄▄▄▄·  ▄· ▄▌    ▄▄▄▄▄▄▄▄  ▄▄▄ .▄▄▄ .▄▄▄ .
+    ·██ ▐███▪▐█ ▀█ ██▪ ██ ▀▄.▀·    ▐█ ▀█▪▐█▪██▌    •██  ▀▄ █·▀▄.▀·▀▄.▀·▀▄.▀·
+    ▐█ ▌▐▌▐█·▄█▀▀█ ▐█· ▐█▌▐▀▀▪▄    ▐█▀▀█▄▐█▌▐█▪     ▐█.▪▐▀▀▄ ▐▀▀▪▄▐▀▀▪▄▐▀▀▪▄
+    ██ ██▌▐█▌▐█ ▪▐▌██. ██ ▐█▄▄▌    ██▄▪▐█ ▐█▀·.     ▐█▌·▐█•█▌▐█▄▄▌▐█▄▄▌▐█▄▄▌
+    ▀▀  █▪▀▀▀ ▀  ▀ ▀▀▀▀▀•  ▀▀▀     ·▀▀▀▀   ▀ •      ▀▀▀ .▀  ▀ ▀▀▀  ▀▀▀  ▀▀▀ 
+
+    Automation scripts are very annoying to make in Blockate.
+    This script aims to make it easier.
+    
+    • ▌ ▄ ·. ▄▄▄ .▄▄▄▄▄ ▄ .▄      ·▄▄▄▄  .▄▄ ·      ▄▄ • ▄• ▄▌▪  ·▄▄▄▄  ▄▄▄ .
+    ·██ ▐███▪▀▄.▀·•██  ██▪▐█▪     ██▪ ██ ▐█ ▀.     ▐█ ▀ ▪█▪██▌██ ██▪ ██ ▀▄.▀·
+    ▐█ ▌▐▌▐█·▐▀▀▪▄ ▐█.▪██▀▐█ ▄█▀▄ ▐█· ▐█▌▄▀▀▀█▄    ▄█ ▀█▄█▌▐█▌▐█·▐█· ▐█▌▐▀▀▪▄
+    ██ ██▌▐█▌▐█▄▄▌ ▐█▌·██▌▐▀▐█▌.▐▌██. ██ ▐█▄▪▐█    ▐█▄▪▐█▐█▄█▌▐█▌██. ██ ▐█▄▄▌
+    ▀▀  █▪▀▀▀ ▀▀▀  ▀▀▀ ▀▀▀ · ▀█▄▀▪▀▀▀▀▀•  ▀▀▀▀     ·▀▀▀▀  ▀▀▀ ▀▀▀▀▀▀▀▀•  ▀▀▀ 
+    
+    > Creating a block.
+    local b = Block.new()
+    
+    > Movement Methods (chainable!)
+        b:LEFT(x) / RIGHT(x) / FRONT(z) / BACK(z) / UP(y) / DOWN(y) -- Ignore x, y, z if it is 1.
+    
+    > Building Methods (chainable!)
+        b:BUILD()
+    
+    ·▄▄▄▄   ▄▄▄· ▄▄▄▄▄ ▄▄▄·      ▄▄ • ▄• ▄▌▪  ·▄▄▄▄  ▄▄▄ .
+    ██▪ ██ ▐█ ▀█ •██  ▐█ ▀█     ▐█ ▀ ▪█▪██▌██ ██▪ ██ ▀▄.▀·
+    ▐█· ▐█▌▄█▀▀█  ▐█.▪▄█▀▀█     ▄█ ▀█▄█▌▐█▌▐█·▐█· ▐█▌▐▀▀▪▄
+    ██. ██ ▐█ ▪▐▌ ▐█▌·▐█ ▪▐▌    ▐█▄▪▐█▐█▄█▌▐█▌██. ██ ▐█▄▄▌
+    ▀▀▀▀▀•  ▀  ▀  ▀▀▀  ▀  ▀     ·▀▀▀▀  ▀▀▀ ▀▀▀▀▀▀▀▀•  ▀▀▀ 
+    
+    We refer to the Block's properties as Data.
+    
+    You can get kicked for illegal block placements or orientations. (when using different shapes and sizes)
+    You may need to place one block that you want to build tons of and find its data first.
+    
+    > Changing Block data
+        The data of a Block "b" is shown below.
+        You have to change it yourself.
+
+        b = {
+            Position = {
+                X = 0,
+                Y = 0,
+                Z = 0,
+            },
+            Orientation = 0,
+            Reflectance = 0,
+            CanCollide = true
+            Color = Color3.fromRGB(242, 243, 243)
+            LightColor = Color3.fromRGB(242, 243, 243)
+            Transparency = 0,
+            Light = 0,
+            Material = 1,
+            Shape = 1,
+            Size = 1,
+        }
+    
+    > Reference:
+        
+    Orientation: {
+        0 = Vector3.new(0, 0, 0)        12 = Vector3.new(-90, -90, 0)
+        1 = Vector3.new(0, 0, 90)       13 = Vector3.new(-90, 0, 0)
+        2 = Vector3.new(0, 0, 180)      14 = Vector3.new(-90, 90, 0)
+        3 = Vector3.new(0, 0, -90)      15 = Vector3.new(-90, -180, 0)
+        4 = Vector3.new(0, 180, 0)      16 = Vector3.new(0, -90, 0)
+        5 = Vector3.new(0, 180, 90)     17 = Vector3.new(0, -90, 90)
+        6 = Vector3.new(0, 180, 180)    18 = Vector3.new(0, -90, 180)
+        7 = Vector3.new(0, -180, -90)   19 = Vector3.new(0, -90, -90)
+        8 = Vector3.new(90, 90, 0)      20 = Vector3.new(0, 90, 0)
+        9 = Vector3.new(90, 0, 0)       21 = Vector3.new(0, 90, 90)
+        10 = Vector3.new(90, -90, 0)    22 = Vector3.new(0, 90, 180)
+        11 = Vector3.new(90, 180, 0)    23 = Vector3.new(0, 90, -90)
+    }
+    
+    Material: {
+        1 = Plastic                 15 = Glass                  29 = Limestone
+        2 = Brick                   16 = Pebble                 30 = Mud
+        3 = Cobblestone             17 = SmoothPlastic          31 = Pavement
+        4 = Concrete                18 = Sand                   32 = Rock
+        5 = CorrodedMetal           19 = Slate                  33 = Salt
+        6 = DiamondPlate            20 = Wood                   34 = Sandstone
+        7 = Fabric                  21 = WoodPlanks             35 = Snow
+        8 = Foil                    22 = ForceField
+        9 = Granite                 23 = Asphalt
+        10 = Grass                  24 = Basalt
+        11 = Ice                    25 = CrackedLava
+        12 = Marble                 26 = Glacier
+        13 = Metal                  27 = Ground
+        14 = Neon                   28 = LeafyGrass
+    }
+    
+    Shape: {
+        1 = Block                   15 = Edge Inner Quadrant    29 = Ball
+        2 = Wedge                   16 = Pyramid                30 = Cube
+        3 = Corner Wedge            17 = Inverted Pyramid
+        4 = Edge Wedge              18 = Cylinder Cap
+        5 = Inner Edge Wedge        19 = Inverted Cylinder Cap
+        6 = Truss                   20 = Cone  
+        7 = Cylinder                21 = Inverted Cone
+        8 = Inverted Cylinder       22 = Prism
+        9 = Quadrant                23 = Inverted Prism
+        10 = Outer Quadrant         24 = Edge Sphere
+        11 = Corner Quadrant        25 = Inner Edge Sphere
+        12 = Edge Quadrant          26 = Sphere
+        13 = Inner Quadrant         27 = Seat
+        14 = Corner Inner Quadrant  28 = Spawn
+    }
+
+    Size: {
+        1 = Full            5 = Small
+        2 = SlabY           6 = PillarY
+        3 = SlabX           7 = PillarX
+        4 = SlabZ           8 = PillarZ
+    }
+    
+    
+--]]
+
+-- Variables ------------------------------------------------------------
+
+-------------------------------------------------------------------------
+
+-- Internal functions ---------------------------------------------------
+
+-- toBlockateOrientation<v3: Vector3>
+function toBlockateOrientation(v3)
+    for i,v in pairs(orientations) do
+        if v == v3 then
+            v3 = i
+            break
+        end
+    end
+end
+
+-------------------------------------------------------------------------
+
+-- Block class ----------------------------------------------------------
+
+local Block = {}
+Block.__index = Block
+
+function Block.new()
+    local data = {
+        Position = {
+            X = 0,
+            Y = 0,
+            Z = 0,
+        },
+        Orientation = 0,
+        Reflectance = 0,
+        CanCollide = true,
+        Color = Color3.fromRGB(242, 243, 243),
+        LightColor = Color3.fromRGB(242, 243, 243),
+        Transparency = 0,
+        Light = 0,
+        Material = 1,
+        Shape = 1,
+        Size = 1,
+    }
+    return setmetatable(data, Block)
+end
+
+-------------------------------------------------------------------------
+
+
+-- Methods -> Main ------------------------------------------------------
+function Block:BUILD()
+    local args = {
+        [1] = ("%s %s %s/%s"):format(self.Position.X, self.Position.Y, self.Position.Z, math.clamp(self.Orientation, 0, 23)),
+        [2] = {
+            ["Reflectance"] = math.clamp(self.Reflectance, 0, 1),
+            ["CanCollide"] = self.CanCollide,
+            ["Color"] = self.Color,
+            ["LightColor"] = self.LightColor,
+            ["Transparency"] = math.clamp(self.Transparency, 0, 1),
+            ["Light"] = self.Light,
+            ["Material"] = math.clamp(self.Material, 1, 28),
+            ["Shape"] = math.clamp(self.Shape, 1, 28),
+            ["Size"] = math.clamp(self.Size, 1, 8),
+        }
+    }
+
+    game:GetService("ReplicatedStorage").Sockets.Edit.Place:InvokeServer(unpack(args))
+    return self
+end
+
+-------------------------------------------------------------------------
+
+-- Methods -> Movement  -------------------------------------------------
+function Block:RIGHT(x)
+    self.Position.X = self.Position.X + (x or 1)
+    return self
+end
+
+function Block:LEFT(x)
+    self.Position.X = self.Position.X - (x or 1)
+    return self
+end
+
+function Block:UP(y)
+    self.Position.Y = self.Position.Y + (y or 1)
+    return self
+end
+
+function Block:DOWN(y)
+    self.Position.Y = self.Position.Y - (y or 1)
+    return self
+end
+
+function Block:BACK(z)
+    self.Position.Z = self.Position.Z + (z or 1)
+    return self
+end
+
+function Block:FRONT(z)
+    self.Position.Z = self.Position.Z - (z or 1)
+    return self
+end
+-------------------------------------------------------------------------
