@@ -19,7 +19,7 @@
     local b = Block.new()
     
     > Movement Methods (chainable!)
-        b:LEFT(x) / RIGHT(x) / FRONT(z) / BACK(z) / UP(y) / DOWN(y) -- Ignore x, y, z if it is 1.
+        b:LEFT() / RIGHT() / FRONT() / BACK() / UP() / DOWN()
     
     > Building Methods (chainable!)
         b:BUILD()
@@ -219,3 +219,5 @@ function Block:FRONT(z)
     return self
 end
 -------------------------------------------------------------------------
+
+return Block
